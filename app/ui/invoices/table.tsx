@@ -4,13 +4,13 @@ import InvoiceStatus from '@/app/ui/invoices/status';
 import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
 import { fetchFilteredInvoices } from '@/app/lib/data';
 
-export default async function InvoicesTable({
-  query,
-  currentPage,
-}: {
+type TProps = {
   query: string;
   currentPage: number;
-}) {
+};
+
+export default async function InvoicesTable(props: TProps) {
+  const { query, currentPage } = props;
   const invoices = await fetchFilteredInvoices(query, currentPage);
 
   return (
@@ -54,6 +54,7 @@ export default async function InvoicesTable({
               </div>
             ))}
           </div>
+
           <table className="hidden min-w-full text-gray-900 md:table">
             <thead className="rounded-lg text-left text-sm font-normal">
               <tr>
